@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Projet 1 WEB</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Crimson Text' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<div id="overlay" class="overlay hidden">
+    <div class="modal">
+        <button class="close-button">&times;</button>
+
+        <div class="modal-content">
+            <div class="modal-chart">
+                <canvas id="modalCanvas"></canvas>
+            </div>
+
+            <div class="modal-text" id="modalText"></div>
+        </div>
+    </div>
+</div>
+
+<body>
+    <header>
+        <div id="title">dashboard</div>
+        <nav>
+            <a href="#page1" class="active">Page 1</a>
+            <a href="#page2">Page 2</a>
+        </nav>
+    </header>
+    <main>
+        <section id="page1" class="dashboard-section">
+            <div class="chart-container">
+                <div class="chart chart-clickable" data-desc="Description du graphe 1">
+                    <h2>GUH 1</h2>
+                    <canvas id="ChartAvgvsPeak"></canvas>
+                </div>
+                <div class="chart chart-clickable" data-desc="Description du graphe 21">
+                    <h2>GUH 2</h2>
+                    <canvas id="ChartPUBGvsDota"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="page2" class="dashboard-section">
+            <div class="chart-container">
+                <div class="chart">
+                    <h2>GUH 2</h2>
+                    <canvas id="Chart2"></canvas>
+                </div>
+                <div class="text">
+                    <p class="desc">gahagh guh guh</p>
+                    <p class="source">source or idk</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>
+        const sections = document.querySelectorAll('.dashboard-section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        const observer = new IntersectionObserver(
+            entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+
+                        navLinks.forEach(link => {
+                            link.classList.toggle(
+                                'active',
+                                link.getAttribute('href') === `#${id}`
+                            );
+                        });
+                    }
+                });
+            },
+            {
+                threshold: 0.9
+            }
+        );
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="Charts1.js"></script>
+    <script src="Popup.js"></script>
+</body>
+
+</html>
