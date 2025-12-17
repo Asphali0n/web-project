@@ -17,12 +17,12 @@ fetch('chart2_1.json')
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Morts par Covid-19',
+                    label: 'Patients ayant succombé au Covid-19',
                     data: death,
                     backgroundColor: 'rgba(224, 77, 77, 0.44)'
                 },
                 {
-                    label: 'Survivants du Covid-19',
+                    label: 'Patients remis du Covid-19',
                     data: survive,
                     backgroundColor: 'rgba(126, 231, 41, 0.44)'
                 }]
