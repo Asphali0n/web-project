@@ -48,8 +48,7 @@ print(age_with_sex.head(3))
 
 df_chart1_1 = age
 df_chart1_1.drop(columns=(['rea', 'hosp', 'reg']))
-df_chart1 = df_chart1_1[(df_chart1_1.cl_age90 != 0) &
-                      (df_chart1_1.jour == '2023-03-31')]
+df_chart1 = df_chart1_1[(df_chart1_1.cl_age90 != 0) & (df_chart1_1.jour == '2023-03-31')]
 agg_rules = {
     'jour': 'last',
     'rad': 'sum',
