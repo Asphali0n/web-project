@@ -1,12 +1,16 @@
-fetch('chart2.json')
+fetch('chart2_1.json')
     .then(response => response.json())
     .then(data => {
 
-        const labels = Object.values(data.sexe);
+        const labels = Object.values(data.sexe).map(valeur => {
+        if (valeur == 1) return "homme";
+        if (valeur == 2) return "femme";
+        return valeur;
+    });
         const death = Object.values(data.dc);
         const survive = Object.values(data.rad);
 
-        const ctx2 = document.getElementById('Chart2').getContext('2d');
+        const ctx2 = document.getElementById('Chart2_1').getContext('2d');
 
         new Chart(ctx2, {
             type: 'bar',
@@ -15,10 +19,12 @@ fetch('chart2.json')
                 datasets: [{
                     label: 'Morts par Covid-19',
                     data: death,
+                    backgroundColor: 'rgba(224, 77, 77, 0.44)'
                 },
                 {
                     label: 'Survivants du Covid-19',
                     data: survive,
+                    backgroundColor: 'rgba(126, 231, 41, 0.44)'
                 }]
             }
         });

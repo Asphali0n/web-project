@@ -43,18 +43,33 @@ print('\n Age with sex dataset \n')
 print(age_with_sex.head(3))
 
 
-# -- Operations for Chart2 --
+# -- Operations for Chart1_1 --
 
-df_chart2 = sex
-df_chart2.drop(columns=(['rea', 'hosp', 'dep']))
-df_chart2 = df_chart2[(df_chart2.sexe != 0) & (df_chart2.jour == '2023-03-31')]
+df_chart1_1 = age
+df_chart1_1.drop(columns=(['rea', 'hosp', 'reg']))
+df_chart1 = df_chart1_1[(df_chart1_1.cl_age90 != 0) &
+                      (df_chart1_1.jour == '2023-03-31')]
+agg_rules = {
+    'jour': 'last',
+    'rad': 'sum',
+    'dc': 'sum'
+}
+df_chart1_1 = df_chart1_1.groupby('cl_age90').agg(agg_rules).reset_index()
+df_chart1_1 = df_chart1_1.drop(columns=(['jour']))
+
+
+# -- Operations for Chart2_1 --
+
+df_chart2_1 = sex
+df_chart2_1.drop(columns=(['rea', 'hosp', 'dep']))
+df_chart2_1 = df_chart2_1[(df_chart2_1.sexe != 0) & (df_chart2_1.jour == '2023-03-31')]
 agg_rules = {
     'jour' : 'last',
     'rad' : 'sum',
     'dc' : 'sum'
 }
-df_chart2 = df_chart2.groupby('sexe').agg(agg_rules).reset_index()
-df_chart2 = df_chart2.drop(columns=(['jour']))
+df_chart2_1 = df_chart2_1.groupby('sexe').agg(agg_rules).reset_index()
+df_chart2_1 = df_chart2_1.drop(columns=(['jour']))
 
 
 
@@ -63,6 +78,7 @@ df_chart2 = df_chart2.drop(columns=(['jour']))
 age.to_json("age.json")
 sex.to_json("sex.json")
 age_with_sex.to_json('age_with_sex.json')
-df_chart2.to_json('chart2.json')
+df_chart1_1.to_json('chart1_1.json')
+df_chart2_1.to_json('chart2_1.json')
 
 

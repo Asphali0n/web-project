@@ -33,26 +33,28 @@
     <main>
         <section id="page1" class="dashboard-section">
             <div class="chart-container">
-                <div class="chart chart-clickable" data-desc="Description du graphe 1">
-                    <h2>GUH 1</h2>
-                    <canvas id="ChartAvgvsPeak"></canvas>
+                <div class="chart chart-clickable"
+                    data-desc="Ce graphe représente le nombre de personnes décédées ou sorties vivantes des hôpitaux en France, en fonction de leur âge, entre 2020 et 2023.">
+                    <h2>Impact de l'age sur la mortalité du virus</h2>
+                    <canvas id="Chart1_1"></canvas>
                 </div>
-                <div class="chart chart-clickable" data-desc="Description du graphe 21">
-                    <h2>GUH 2</h2>
-                    <canvas id="Chart2"></canvas>
+                <div class="chart chart-clickable" data-desc="Description du graphe 1_2">
+                    <h2>GUH 1_2</h2>
+                    <canvas id="Chart1_2"></canvas>
                 </div>
             </div>
         </section>
 
         <section id="page2" class="dashboard-section">
             <div class="chart-container">
-                <div class="chart">
-                    <h2>GUH 2</h2>
-                    <canvas id="Chart3"></canvas>
+                <div class="chart chart-clickable"
+                    data-desc="Ce graphe compare l'impact du Covid-19 selon le sexe, en distinguant les décès des survivants. La mortalité est visiblement plus élevée chez les hommes (approchant les 80 000 décès) que chez les femmes.">
+                    <h2>Impact du sexe sur la mortalité du virus</h2>
+                    <canvas id="Chart2_1"></canvas>
                 </div>
-                <div class="text">
-                    <p class="desc">gahagh guh guh</p>
-                    <p class="source">source or idk</p>
+                <div class="chart chart-clickable" data-desc="Description du graphe 2_2">
+                    <h2>GUH 2_2</h2>
+                    <canvas id="Chart2_2"></canvas>
                 </div>
             </div>
         </section>
@@ -85,8 +87,8 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="Chart1.js"></script>
-    <script src="Chart2.js"></script>
+    <script src="Chart1_1.js"></script>
+    <script src="Chart2_1.js"></script>
     <script src="Popup.js"></script>
 </body>
 
