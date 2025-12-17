@@ -1,31 +1,25 @@
 fetch('chart2.json')
     .then(response => response.json())
     .then(data => {
-        // --- TOUT SE PASSE ICI ---
 
-        // 2. On prépare les tableaux (Changez 'date' et 'valeur' par VOS clés du JSON)
-        // Exemple : si votre JSON est [{ "date": "2023", "players": 500 }, ...]
-        const labels = data.map(item => item.sexe);
-        const death = data.map(item => item.dc);
-        const survive = data.map(item => item.rad)
+        const labels = Object.values(data.sexe);
+        const death = Object.values(data.dc);
+        const survive = Object.values(data.rad);
 
-        // 3. On crée le graphique ICI
-        const ctx = document.getElementById('monGraphique').getContext('2d');
-        
-        new Chart(ctx, {
-            type: 'line', // ou 'bar'
+        const ctx2 = document.getElementById('Chart2').getContext('2d');
+
+        new Chart(ctx2, {
+            type: 'bar',
             data: {
-                labels: mesLabels,
+                labels: labels,
                 datasets: [{
-                    label: 'Moyenne Joueurs Valve',
-                    data: mesDonnees,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
+                    label: 'Morts par Covid-19',
+                    data: death,
+                },
+                {
+                    label: 'Survivants du Covid-19',
+                    data: survive,
                 }]
             }
         });
-    })
-    .catch(error => {
-        // C'est ici qu'on gère les erreurs si le fichier n'est pas trouvé
-        console.error("Erreur de chargement du JSON :", error);
     });
