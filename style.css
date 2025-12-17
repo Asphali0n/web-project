@@ -59,22 +59,38 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    flex-direction: column;
+    width: 96%;
     height: calc(100vh - 66px);
     background-color: rgb(255, 255, 255);
+    padding: 2%;
     padding-top: 66px;
+}
+
+.section-title {
+    align-self: flex-start;
+    text-align: left;
+    font-weight: bold;
+    background-color: rgb(243, 243, 243);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 0;
+    margin-top: 32px;
 }
 
 /* ================== Components ================== */
 
 .chart-container {
     display: flex;
-    width: 90%;
-    height: 85%;
-    background-color: rgb(231, 231, 231);
+    flex-grow: 1;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(243, 243, 243);
     border-radius: 16px;
     gap: 32px;
     padding: 32px;
+    margin-bottom: 32px;
+    margin-top: 32px;
 }
 
 .chart {
@@ -82,7 +98,7 @@ main {
     flex: 2;
     flex-direction: column;
     justify-content: center;
-    background-color: #dadada;
+    background-color: rgb(230, 230, 230);
     border-radius: 16px;
 }
 
@@ -128,7 +144,7 @@ main {
     height: 100%;
     width: 90%;
     overflow: hidden;
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(230, 230, 230);
     border-radius: 16px;
     padding: 24px;
 }
@@ -137,7 +153,7 @@ main {
     flex: 1;
     font-family: 'Montserrat';
     overflow-y: auto;
-    background-color: rgb(223, 223, 223);
+    background-color: rgb(230, 230, 230);
     border-radius: 16px;
     padding: 24px;
 }
@@ -176,7 +192,7 @@ nav a:hover:not(.active) {
 }
 
 .chart-clickable:hover {
-    background-color: #cfcfcf;
+    background-color: rgb(220, 220, 220);
     transition: background-color .1s ease
 }
 
