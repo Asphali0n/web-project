@@ -13,12 +13,20 @@ fetch('../json_files/chart2_2.json')
         const datasets = sexes.map((sexe, index) => ({
             // On utilise la correspondance si elle existe, sinon on garde la valeur d'origine
             label: labelsMap[sexe] || sexe,
-            data: data.map(item => item[sexe]), 
+            data: data.map(item => item[sexe]),
             fill: false
         }));
 
         new Chart(document.getElementById('Chart2_2'), {
             type: 'line',
-            data: { labels, datasets }
+            data: { labels, datasets },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Nombre de décès' }
+                    }
+                }
+            }
         });
     });

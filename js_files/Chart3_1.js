@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById('Chart3_1');
     if (!ctx) return; // Sécurité si le canvas n'existe pas
 
-fetch('../json_files/chart3_1.json')
+    fetch('../json_files/chart3_1.json')
         .then(response => {
             if (!response.ok) throw new Error("Fichier chart3.json introuvable !");
             return response.json();
@@ -37,11 +37,12 @@ fetch('../json_files/chart3_1.json')
                 },
                 options: {
                     responsive: true,
-                    plugins: {
-                        title: { display: true, text: 'Décès cumulés par Âge et Sexe (France)' }
-                    },
+
                     scales: {
-                        y: { beginAtZero: true }
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Nombre de décès' }
+                        }
                     }
                 }
             });

@@ -20,11 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 options: {
                     responsive: true,
                     plugins: {
-                        title: { display: true, text: 'Décès par Région (France)' },
                         legend: { display: false }
                     },
                     scales: {
-                        y: { beginAtZero: true }
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Nombre de décès' }
+                        }
                     }
                 }
             });

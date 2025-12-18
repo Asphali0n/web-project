@@ -25,13 +25,13 @@ fetch('../json_files/chart2_1.json')
         new Chart(ctx, {
             type: 'bar',
             data: {
-                
-                labels: ['Patients ayant succombé au Covid-19', 'Patients remis du Covid-19'],
+
+                labels: ['Patients ayant succombé', 'Patients remis'],
                 datasets: [
                     {
-                        
+
                         label: 'Hommes',
-                        
+
                         data: [hommeDeath, hommeSurvive],
                         backgroundColor: 'rgba(54, 162, 235, 0.50)',
                     },
@@ -39,7 +39,7 @@ fetch('../json_files/chart2_1.json')
                         // Second jeu de données : Les Femmes
                         label: 'Femmes',
                         // Données : [Mort Femme, Survie Femme]
-                        
+
                         data: [femmeDeath, femmeSurvive],
                         backgroundColor: 'rgba(255, 99, 132, 0.50)'
                     }
@@ -49,7 +49,8 @@ fetch('../json_files/chart2_1.json')
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        title: { display: true, text: 'Nombre de personnes' }
                     }
                 }
             }

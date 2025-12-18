@@ -6,6 +6,7 @@ Promise.all([
         jour: dataJour,
         mois: dataMois
     };
+
     const labels = dataMois.map(item => item.mois);
     const ages = Object.keys(dataMois[0]).filter(k => k !== 'mois');
 
@@ -15,9 +16,28 @@ Promise.all([
         borderColor: `hsl(${(index * 360) / ages.length}, 70%, 50%)`,
         fill: false
     }));
+    // Global variables used for sliders
+    window.chart1_2_data = {
+        jour: dataJour,
+        mois: dataMois,
+        maxJour: 450,
+        maxMois: 6000
+    };
+
 
     new Chart(document.getElementById('Chart1_2'), {
         type: 'line',
-        data: { labels, datasets }
+        data: { labels, datasets },
+        options: {
+            scales: {
+                y: {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    title: { display: true, text: 'Nombre de décès' },
+                    max: window.chart1_2_data.maxMois
+                },
+            }
+        }
     });
 });
