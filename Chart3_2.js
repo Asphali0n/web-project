@@ -1,26 +1,32 @@
-// Chart3_2.js
+document.addEventListener('DOMContentLoaded', () => {
+    const ctx = document.getElementById('Chart3_2');
+    if (!ctx) return;
 
-// Données simples pour le test
-const rawData3_2 = {
-    labels: ['Produit A', 'Produit B', 'Produit C'],
-    values: [100, 200, 150] // Valeurs de base
-};
-
-const ctx3_2 = document.getElementById('Chart3_2').getContext('2d');
-
-// On stocke l'instance dans une variable globale ou accessible pour pouvoir la cloner plus tard
-window.chart3_2_Instance = new Chart(ctx3_2, {
-    type: 'bar',
-    data: {
-        labels: rawData3_2.labels,
-        datasets: [{
-            label: 'Ventes Test',
-            data: rawData3_2.values,
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: { legend: { display: false } }
-    }
+    fetch('Chart3_2.json')
+        .then(res => res.json())
+        .then(data => {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(d => d.region),
+                    datasets: [{
+                        label: 'Décès cumulés',
+                        data: data.map(d => d.dc),
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: { display: true, text: 'Décès par Région (France)' },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        })
 });
