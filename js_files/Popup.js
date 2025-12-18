@@ -162,37 +162,46 @@ overlay.addEventListener('click', e => {
 // ========== SLIDERS/TOGGLES AND CONFIGS ================
 
 const controlsDiv = document.getElementById('modalControls');
+const slidersParent = document.getElementById('slidersParent');
+
 const sliderContainer = document.getElementById('sliderContainer');
 const sliderInput = document.getElementById('modalSlider');
 const sliderValueSpan = document.getElementById('sliderValue');
 
+const sliderContainer2 = document.getElementById('sliderContainer2');
+const sliderInput2 = document.getElementById('modalSlider2');
+const sliderValueSpan2 = document.getElementById('sliderValue2');
+
+const sliderContainer3 = document.getElementById('sliderContainer3');
+const sliderInput3 = document.getElementById('modalSlider3');
+const sliderValueSpan3 = document.getElementById('sliderValue3');
+
 // chart configs
 const chartConfigs = {
-    'Chart3_2': {
+    'Chart1_2': {
+        // SLIDER 1 : Zoom
         slider: {
             active: true,
-            min: 0,
-            max: 300,
-            step: 5,
-            default: 100,
-            unit: '%',
-            // Action (What you change when using slider)
-            action: (chart, val) => {
-                const factor = val / 100;
-                // Change data based on the original
-                const originalData = chart.initialDataValues;
-
-                // Updates chart values (this is a basic multiplier)
-                chart.data.datasets[0].data = originalData.map(v => v * factor);
-                chart.update();
-            }
+            min: 5, max: 100, step: 5, default: 100, unit: '%', // Min 5% pour éviter d'avoir 0 données
+            action: (chart) => updateChart1_2(chart)
         },
-
+        // SLIDER 2 : Tick size (or precision)
+        slider2: {
+            active: true,
+            min: 1, max: 35, step: 1, default: 35,
+            action: (chart) => updateChart1_2(chart)
+        },
+        // SLIDER 3 : Start date
+        slider3: {
+            active: true,
+            min: 0, max: 100, step: 1, default: 0, // Le max sera mis à jour dynamiquement
+            action: (chart) => updateChart1_2(chart)
+        }
     }, 'Chart2_3': {
         toggle: {
             active: true,
             default: 'dc',
-            // LAction
+            // Action
             action: (mapInstance, mode) => {
                 // Calculate data based on the mode (dc/rad)
                 let newData = getFormattedMapData(mode);
@@ -201,9 +210,71 @@ const chartConfigs = {
             }
         }
     },
-
-    // Add other chart ids and configs here
 };
+
+function updateChart1_2(chart) {
+    // Get values for the first 2 sliders, the third one will change
+    const rangeVal = parseInt(document.getElementById('modalSlider').value); // % d'échantillon
+    const precisionVal = parseInt(document.getElementById('modalSlider2').value); // Précision
+    let startIndex = parseInt(sliderInput3.value);
+
+    let sourceData;
+    let labelKey;
+
+    // If input > 29, we switch on the month based data
+    if (precisionVal > 29) {
+        sourceData = window.chart1_2_data.mois;
+        labelKey = 'mois';
+        document.getElementById('sliderValue2').textContent = "Mois";
+    } else {
+        // if not, we swith on day based data
+        // We keep one line out of x lines (x being the precision input)
+        sourceData = window.chart1_2_data.jour.filter((_, index) => index % precisionVal === 0);
+        labelKey = 'jour';
+
+        let texte = (precisionVal === 1) ? "Tous les jours" : `Tous les ${precisionVal} jours`;
+        document.getElementById('sliderValue2').textContent = texte;
+    }
+
+    // Get total json length
+    const totalPoints = sourceData.length;
+
+    // Number of points to show (minimum 2)
+    const pointsToShow = Math.max(2, Math.ceil(totalPoints * (rangeVal / 100)));
+
+    // Get the max index we can start at (if we show 20 out of 100 total, we can start at 80 max)
+    const maxStartIndex = Math.max(0, totalPoints - pointsToShow);
+
+    // Change 3rd slider's max
+    sliderInput3.max = maxStartIndex;
+
+    // Bring it back to max if it is above
+    if (startIndex > maxStartIndex) {
+        startIndex = maxStartIndex;
+        // Update the value because it gets stuck on the right somehow
+        sliderInput3.value = maxStartIndex;
+    }
+
+    // Show start date
+    if (sourceData[startIndex]) {
+        document.getElementById('sliderValue3').textContent = sourceData[startIndex][labelKey];
+    }
+
+    // Slicing (we basically use the start and end index to cut it there)
+    const endIndex = startIndex + pointsToShow;
+    const finalData = sourceData.slice(startIndex, endIndex);
+
+    chart.data.labels = finalData.map(item => item[labelKey]);
+
+    // This basically loads data when you move sliders
+    chart.data.datasets.forEach(dataset => {
+        // We're just deleting "Age" to get the key
+        const ageKey = dataset.label.replace('Âge ', '');
+        dataset.data = finalData.map(item => item[ageKey]);
+    });
+
+    chart.update();
+}
 
 // Function to setup controls (basically changing html attributes for sliders/toggles based on config)
 function setupControls(chartId, currentChart) {
@@ -211,7 +282,10 @@ function setupControls(chartId, currentChart) {
 
     // Hide by default
     controlsDiv.classList.add('hidden');
+    slidersParent.classList.add('hidden');
     sliderContainer.classList.add('hidden');
+    sliderContainer2.classList.add('hidden');
+    sliderContainer3.classList.add('hidden');
     mapToggleContainer.classList.add('hidden');
 
     // If no config we just stop here
@@ -222,22 +296,55 @@ function setupControls(chartId, currentChart) {
 
     // SLIDER (basically just changing every html attributes to how we set it in the config, because every chart will have different sliders)
     if (config.slider && config.slider.active) {
+        slidersParent.classList.remove('hidden');
         sliderContainer.classList.remove('hidden');
-
-        // html attributes
         sliderInput.min = config.slider.min;
         sliderInput.max = config.slider.max;
-        sliderInput.step = config.slider.step || 1;
+        sliderInput.step = config.slider.step;
         sliderInput.value = config.slider.default;
-
-        // Update text
         sliderValueSpan.textContent = config.slider.default + (config.slider.unit || '');
 
-        // Update value on input
         sliderInput.oninput = (e) => {
             const val = parseInt(e.target.value);
             sliderValueSpan.textContent = val + (config.slider.unit || '');
+            // Note : pour Chart1_2, l'action ignore "val" car elle relit les deux sliders direct
             config.slider.action(currentChart, val);
+        };
+    }
+
+    // SLIDER 2
+    if (config.slider2 && config.slider2.active) {
+        slidersParent.classList.remove('hidden');
+        sliderContainer2.classList.remove('hidden');
+        sliderInput2.min = config.slider2.min;
+        sliderInput2.max = config.slider2.max;
+        sliderInput2.step = config.slider2.step;
+        sliderInput2.value = config.slider2.default;
+
+        // Start action once to put the right value
+        config.slider2.action(currentChart, config.slider2.default);
+
+        sliderInput2.oninput = (e) => {
+            const val = parseInt(e.target.value);
+            config.slider2.action(currentChart, val);
+        };
+    }
+    // SLIDER 3
+    if (config.slider3 && config.slider3.active) {
+        slidersParent.classList.remove('hidden');
+        sliderContainer3.classList.remove('hidden');
+
+        sliderInput3.min = config.slider3.min;
+        sliderInput3.step = config.slider3.step;
+        sliderInput3.value = config.slider3.default;
+        sliderValueSpan3.textContent = "Début";
+
+        // Start action once to put the right value
+        config.slider3.action(currentChart, 0); // i had setTimeout(() => here because it broke once but i've never seen it break again so...
+
+        sliderInput3.oninput = (e) => {
+            const val = parseInt(e.target.value);
+            config.slider3.action(currentChart, val);
         };
     }
 
