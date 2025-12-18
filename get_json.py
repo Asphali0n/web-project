@@ -159,7 +159,6 @@ df_chart2_2_mois = df_mois_grouped.pivot(
 
 
 
-
 # -- Export to json --
 
 age.to_json("age.json")
