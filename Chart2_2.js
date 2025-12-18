@@ -13,8 +13,7 @@ fetch('chart2_2.json')
         const datasets = sexes.map((sexe, index) => ({
             // On utilise la correspondance si elle existe, sinon on garde la valeur d'origine
             label: labelsMap[sexe] || sexe,
-            data: data.map(item => item[sexe]),
-            borderColor: `hsl(${(index * 360) / sexes.length}, 70%, 50%)`,
+            data: data.map(item => item[sexe]), 
             fill: false
         }));
 
