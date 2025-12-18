@@ -9,8 +9,14 @@ age = pd.read_csv("https://www.data.gouv.fr/api/1/datasets/r/08c18e08-6780-452d-
 # covid-hospit-2023-03-31-18h01.csv
 sex = pd.read_csv("https://www.data.gouv.fr/api/1/datasets/r/63352e38-d353-4b54-bfd1-f1b3ee1cabd7", sep=";")
 # mmc1.xlsx
-age_with_sex = pd.read_excel('mmc1.xlsx', sheet_name='data')
 
+
+try:
+    # get dataset online
+    age_with_sex = load_mmc1()
+except:
+    # use the local one if it doesn't work
+    age_with_sex = pd.read_excel('mmc1.xlsx', sheet_name='data')
 
 # -- Initial print -- 
 
