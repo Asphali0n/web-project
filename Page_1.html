@@ -16,8 +16,18 @@
             <div class="modal-chart">
                 <canvas id="modalCanvas"></canvas>
             </div>
+            <div id="modalControls" class="modal-controls hidden">
+                <div class="modal-text" id="modalText"></div>
 
-            <div class="modal-text" id="modalText"></div>
+
+                <div id="sliderContainer" class="control-group hidden">
+                    <label id="sliderLabel">Multiplicateur : <span id="sliderValue">100%</span></label>
+                    <input type="range" id="modalSlider" min="0" max="200" step="1">
+                </div>
+
+
+
+            </div>
         </div>
     </div>
 </div>
@@ -163,6 +173,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="Chart1_1.js"></script>
     <script src="Chart2_1.js"></script>
+    <script src="Chart3_2.js"></script>
     <script src="Popup.js"></script>
 </body>
 
