@@ -60,11 +60,12 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 90%;
+    width: 85%;
+    max-width: 1440px;
     height: calc(100vh - 66px);
     background-color: rgb(255, 255, 255);
-    padding: 4vw;
     padding-top: 66px;
+    margin: 0 auto;
 }
 
 .section-title {
@@ -91,8 +92,6 @@ main {
     padding: 3vh 2vw;
     margin-bottom: 4vh;
     margin-top: 4vh;
-    min-width: 0;
-    min-height: 0;
 }
 
 .chart-container-3charts {
@@ -110,8 +109,7 @@ main {
 }
 
 .chart-container-3charts .chart-container {
-    background-color: none;
-    border-radius: none;
+    background-color: unset;
     padding: 1.5vh 1vw;
     margin: 0;
 }
@@ -125,9 +123,8 @@ main {
     border-radius: 16px;
 }
 
-.dual-chart {
-    background-color: rgb(230, 230, 230);
-    border-radius: 16px;
+#Chart2_3 {
+    flex: 1;
 }
 
 .chart-title {
