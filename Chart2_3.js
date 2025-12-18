@@ -10,31 +10,46 @@ Promise.all([
             let codeDep = data.dep[index];
             let sex = data.sexe[index];
             let deathNb = data.dc[index];
+            let radNb = data.rad[index];
 
             if (!depsList[codeDep]) {
                 depsList[codeDep] = {
                     id: codeDep,
                     dc_hommes: 0,
-                    dc_femmes: 0
+                    dc_femmes: 0,
+                    rad_hommes: 0,
+                    rad_femmes: 0
                 };
             }
 
-            if (sex === 1) depsList[codeDep].dc_hommes += deathNb;
-            else depsList[codeDep].dc_femmes += deathNb;
+            if (sex === 1) {
+                depsList[codeDep].dc_hommes += deathNb;
+                depsList[codeDep].rad_hommes += radNb;
+            } else {
+                depsList[codeDep].dc_femmes += deathNb;
+                depsList[codeDep].rad_femmes += radNb;
+            }
         });
 
         // Convert to table
-        let dataPourLaCarte = Object.values(depsList).map(dep => {
+        let mapData = Object.values(depsList).map(dep => {
             let couleur = (dep.dc_hommes > dep.dc_femmes) ? '#42a5f5' : '#ec407a';
             return {
                 id: dep.id,
                 value: dep.dc_hommes + dep.dc_femmes,
                 fill: couleur,
+
+                dc_hommes: dep.dc_hommes,
+                dc_femmes: dep.dc_femmes,
+                rad_hommes: dep.rad_hommes,
+                rad_femmes: dep.rad_femmes,
+
                 hommes: dep.dc_hommes,
-                femmes: dep.dc_femmes
+                femmes: dep.dc_femmes,
             };
         });
 
+        window.mapDataGlobal = mapData;
         // Creating map
         let map = anychart.map();
 
@@ -44,7 +59,7 @@ Promise.all([
         // Use "code" element un the geoJSON (would be too long to explain how geoJSON and AnyChart work here)
         map.geoIdField('code');
 
-        let series = map.choropleth(dataPourLaCarte);
+        let series = map.choropleth(mapData);
         series.tooltip().titleFormat('{%nom}');
 
         // Tooltip
