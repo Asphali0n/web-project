@@ -97,7 +97,7 @@ main {
     display: flex;
     flex: 1;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     background-color: rgb(230, 230, 230);
     border-radius: 16px;
 }
@@ -109,7 +109,7 @@ main {
 
 .chart canvas {
     max-width: 100%;
-    margin: 0 1%;
+    margin: auto 1%;
 }
 
 .chart-title {
@@ -117,7 +117,7 @@ main {
     text-align: center;
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
-    margin: 1vh 0;
+    margin: 3vh 0;
 }
 
 .chart-clickable {
@@ -282,9 +282,6 @@ nav a:hover:not(.active) {
 
 /* ================== Others ================== */
 
-.map-title {
-    margin: 15% 0;
-}
 
 /* Hide AnyChart watermark */
 
