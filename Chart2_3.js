@@ -3,6 +3,7 @@ Promise.all([
     fetch('https://france-geojson.gregoiredavid.fr/repo/departements.geojson').then(resp => resp.json())
 ])
     .then(([data, geoJSON]) => {
+        window.mapGeoJSON = geoJSON;
         // data parsing
         let depsList = {};
 

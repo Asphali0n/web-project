@@ -2,8 +2,16 @@ const overlay = document.getElementById('overlay');
 const modalCanvas = document.getElementById('modalCanvas');
 const modalText = document.getElementById('modalText');
 const closeBtn = document.querySelector('.close-button');
+const modalMap = document.getElementById('modalMap');
+
+const mapToggleContainer = document.getElementById('mapToggleContainer');
+const btnDC = document.getElementById('btnDC');
+const btnRAD = document.getElementById('btnRAD');
+const mapToggleValue = document.getElementById('mapToggleValue');
 
 let modalChart = null;
+let modalMapInstance = null;
+
 
 // For each div with .chart-clickable class
 document.querySelectorAll('.chart-clickable').forEach(container => {
