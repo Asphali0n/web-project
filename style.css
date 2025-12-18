@@ -103,14 +103,14 @@ main {
 }
 
 #Chart2_3 {
-    flex: 1;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .chart canvas {
     max-width: 100%;
     margin: 0 1%;
 }
-
 
 .chart-title {
     align-self: top;
@@ -278,6 +278,12 @@ nav a:hover:not(.active) {
 
 .overlay:not(.hidden) .modal-controls {
     transition-delay: 0.1s;
+}
+
+/* ================== Others ================== */
+
+.map-title {
+    margin: 15% 0;
 }
 
 /* Hide AnyChart watermark */
