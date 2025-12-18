@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById('Chart3_3');
     if (!ctx) return;
 
-    fetch('Chart3_3.json')
+    fetch('../json_files/chart3_3.json')
         .then(res => res.json())
         .then(data => {
             const labels = data.map(item => item.country);

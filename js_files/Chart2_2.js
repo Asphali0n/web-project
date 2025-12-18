@@ -1,4 +1,4 @@
-fetch('chart2_2.json')
+fetch('../json_files/chart2_2.json')
     .then(response => response.json())
     .then(data => {
 

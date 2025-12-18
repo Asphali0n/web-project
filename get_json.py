@@ -229,16 +229,16 @@ df_chart3_3 = df_chart3_3.groupby('country')['Dx_covid_season'].sum().sort_value
 
 # -- Export to json --
 
-age.to_json("age.json")
-sex.to_json("sex.json")
-age_with_sex.to_json('age_with_sex.json')
-df_chart1_1.to_json('chart1_1.json')
-df_chart2_1.to_json('chart2_1.json')
-df_chart2_3.to_json('chart2_3.json')
-df_pivot.to_json('chart1_2_jour.json', orient='records')
-df_chart1_2_mois.to_json('chart1_2_mois.json', orient='records')
-df_chart2_2_mois.to_json('chart2_2.json', orient='records')
-df_chart3_1.to_json('Chart3_1.json')
-df_chart3_2.to_json('Chart3_2.json', orient='records')
-df_chart3_3.to_json('Chart3_3.json', orient='records')
+age.to_json("json_files/age.json")
+sex.to_json("json_files/sex.json")
+age_with_sex.to_json('json_files/age_with_sex.json')
+df_chart1_1.to_json('json_files/chart1_1.json')
+df_chart2_1.to_json('json_files/chart2_1.json')
+df_chart2_3.to_json('json_files/chart2_3.json')
+df_pivot.to_json('json_files/chart1_2_jour.json', orient='records')
+df_chart1_2_mois.to_json('json_files/chart1_2_mois.json', orient='records')
+df_chart2_2_mois.to_json('json_files/chart2_2.json', orient='records')
+df_chart3_1.to_json('json_files/chart3_1.json')
+df_chart3_2.to_json('json_files/chart3_2.json', orient='records')
+df_chart3_3.to_json('json_files/chart3_3.json', orient='records')
 

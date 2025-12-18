@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById('Chart3_1');
     if (!ctx) return; // Sécurité si le canvas n'existe pas
 
-fetch('Chart3_1.json')
+fetch('../json_files/chart3_1.json')
         .then(response => {
             if (!response.ok) throw new Error("Fichier chart3.json introuvable !");
             return response.json();

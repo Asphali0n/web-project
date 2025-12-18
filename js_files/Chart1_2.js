@@ -1,6 +1,6 @@
 Promise.all([
-    fetch('chart1_2_jour.json').then(res => res.json()),
-    fetch('chart1_2_mois.json').then(res => res.json())
+    fetch('../json_files/chart1_2_jour.json').then(res => res.json()),
+    fetch('../json_files/chart1_2_mois.json').then(res => res.json())
 ]).then(([dataJour, dataMois]) => {
     const labels = dataMois.map(item => item.mois);
     const ages = Object.keys(dataMois[0]).filter(k => k !== 'mois');

@@ -1,5 +1,5 @@
 Promise.all([
-    fetch('chart2_3.json').then(resp => resp.json()),
+    fetch('../json_files/chart2_3.json').then(resp => resp.json()),
     fetch('https://france-geojson.gregoiredavid.fr/repo/departements.geojson').then(resp => resp.json())
 ])
     .then(([data, geoJSON]) => {

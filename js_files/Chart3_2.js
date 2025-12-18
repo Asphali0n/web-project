@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = document.getElementById('Chart3_2');
     if (!ctx) return;
 
-    fetch('Chart3_2.json')
+    fetch('../json_files/chart3_2.json')
         .then(res => res.json())
         .then(data => {
             new Chart(ctx, {

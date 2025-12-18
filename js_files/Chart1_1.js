@@ -1,4 +1,4 @@
-fetch('chart1_1.json')
+fetch('../json_files/chart1_1.json')
     .then(response => response.json())
     .then(data => {
         // 2. Extraction des listes pour les axes du graphique
