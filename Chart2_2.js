@@ -1,4 +1,4 @@
-fetch('chart2_2_mois.json')
+fetch('chart2_2.json')
     .then(response => response.json())
     .then(data => {
 

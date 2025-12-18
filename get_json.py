@@ -170,5 +170,5 @@ df_chart2_1.to_json('chart2_1.json')
 df_chart2_3.to_json('chart2_3.json')
 df_pivot.to_json('chart1_2_jour.json', orient='records')
 df_chart1_2_mois.to_json('chart1_2_mois.json', orient='records')
-df_chart2_2_mois.to_json('chart2_2_mois.json', orient='records')
+df_chart2_2_mois.to_json('chart2_2.json', orient='records')
 
