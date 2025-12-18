@@ -19,16 +19,29 @@
             </div>
             <div id="modalControls" class="modal-controls hidden">
                 <div class="modal-text" id="modalText"></div>
+                <div id="slidersParent" class="control-group hidden">
 
-                <div id="sliderContainer" class="control-group hidden">
-                    <label id="sliderLabel">Multiplicateur : <span id="sliderValue">100%</span></label>
-                    <input type="range" id="modalSlider" min="0" max="200" step="1">
+                    <div id="sliderContainer" class="sliders hidden">
+                        <label id="sliderLabel">Échantillon : <span id="sliderValue">100%</span></label>
+                        <input type="range" id="modalSlider" min="0" max="100" step="1">
+                    </div>
+
+                    <div id="sliderContainer2" class="sliders hidden">
+                        <label id="sliderLabel2">Précision : <span id="sliderValue2">Mois</span></label>
+                        <input type="range" id="modalSlider2" min="1" max="35" step="1">
+                    </div>
+
+                    <div id="sliderContainer3" class="sliders hidden">
+                        <label id="sliderLabel3">Début : <span id="sliderValue3">0</span></label>
+                        <input type="range" id="modalSlider3" min="0" max="0" step="1" value="0">
+                    </div>
+
                 </div>
                 <div id="mapToggleContainer" class="control-group hidden">
                     <label>Données : <span id="mapToggleValue">Décès</span></label>
                     <div>
-                        <button id="btnDC" class="toggle-btn">DC</button>
-                        <button id="btnRAD" class="toggle-btn">RAD</button>
+                        <button id="btnDC" class="toggle-button">DC</button>
+                        <button id="btnRAD" class="toggle-button">RAD</button>
                     </div>
                 </div>
 

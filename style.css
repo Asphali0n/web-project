@@ -210,10 +210,31 @@ main {
     padding: 0;
 }
 
-.toggle-btn {
-    width: 20%;
+#mapToggleContainer:not(.hidden) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mapToggleContainer div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.toggle-button {
+    width: 40%;
     border-radius: 16px;
     border: none;
+    margin-top: 5%;
+}
+
+.sliders,
+.slidersParent {
+    display: flex;
+    flex-direction: column;
 }
 
 /* ================== States ================== */
@@ -250,11 +271,12 @@ nav a:hover:not(.active) {
     transition: background-color .1s ease;
 }
 
-.control-group.hidden {
+.control-group.hidden,
+.sliders.hidden {
     display: none;
 }
 
-.toggle-btn:not(.selected):hover {
+.toggle-button:not(.selected):hover {
     background-color: rgb(240, 240, 240) !important;
     transition: background-color .1s ease;
 }

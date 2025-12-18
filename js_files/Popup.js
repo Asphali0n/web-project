@@ -41,6 +41,7 @@ function openModal(sourceCanvas, description, chartId) {
 
     // Show overlay
     overlay.classList.remove('hidden');
+    modalCanvas.style.display = 'block';
     modalText.textContent = description;
 
     // Delete old chart if it still exists
@@ -68,7 +69,7 @@ function openModal(sourceCanvas, description, chartId) {
 }
 
 function openModalMap(description, chartId) {
-    resetModalView(); // hide everything (I swear i always have those scenarios forcing me to add a security like this)
+    resetModalView(); // hide everything (The map gets resized weirdly if i delete this)
     modalMap.style.display = 'block'; // Show map div
     modalMap.style.width = '100%';
     modalMap.style.height = '100%';
@@ -125,9 +126,9 @@ function resetModalView() {
 
 // Function to close modal by adding the css class "hidden" (yes, I know the chart instantly gets destroyed but i bet you didn't notice until now)
 function closeModal() {
-    overlay.classList.add('hidden');
     if (modalChart) { modalChart.destroy(); modalChart = null; }
     if (modalMapInstance) { modalMapInstance.dispose(); modalMapInstance = null; }
+    overlay.classList.add('hidden');
 }
 
 // Function to format JSON data (it was not really usable the way it was initially)
@@ -138,7 +139,7 @@ function getFormattedMapData(mode) {
         let valH = (mode === 'dc') ? dep.dc_hommes : dep.rad_hommes;
         let valF = (mode === 'dc') ? dep.dc_femmes : dep.rad_femmes;
         let total = valH + valF;
-        let couleur = (valH > valF) ? '#42a5f5' : '#ec407a';
+        let couleur = (valH > valF) ? '#62b8ffff' : '#ff4b87';
 
         return {
             id: dep.id,
@@ -247,13 +248,17 @@ function setupControls(chartId, currentChart) {
         // Function to change style based on mode 
         const setButtonStyle = (mode) => {
             if (mode === 'dc') {
-                btnDC.style.background = '#333'; btnDC.style.color = 'white';
-                btnRAD.style.background = 'white'; btnRAD.style.color = 'black';
+                btnDC.style.background = '#c6c6c6';
+                btnRAD.style.background = 'white';
                 mapToggleValue.textContent = "Décès";
+                btnDC.classList.add('selected');
+                btnRAD.classList.remove('selected');
             } else {
-                btnRAD.style.background = '#333'; btnRAD.style.color = 'white';
-                btnDC.style.background = 'white'; btnDC.style.color = 'black';
+                btnRAD.style.background = '#c6c6c6';
+                btnDC.style.background = 'white';
                 mapToggleValue.textContent = "Retour à domicile";
+                btnDC.classList.remove('selected');
+                btnRAD.classList.add('selected');
             }
         };
 
