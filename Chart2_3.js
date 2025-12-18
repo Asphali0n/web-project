@@ -60,6 +60,34 @@ Promise.all([
         map.background().fill("transparent")
         map.bounds(0, 0, "100%", "100%")
 
+
+        // 1. Activer la légende
+        let legend = map.legend();
+        legend.enabled(true);
+
+        // 2. Définir les éléments manuellement pour correspondre à votre logique de couleurs
+        legend.items([
+            {
+                text: "Majorité d'hommes morts",
+                iconFill: "#42a5f5",  // Le même bleu que dans votre boucle
+                iconStroke: "none"    // Pas de bordure autour du carré de couleur
+            },
+            {
+                text: "Majorité de femmes mortes",
+                iconFill: "#ec407a",  // Le même rouge/rose que dans votre boucle
+                iconStroke: "none"
+            }
+        ]);
+
+        // 3. (Optionnel) Position et style de la légende
+        legend.position("right"); // ou "bottom", "left", "top"
+        legend.align("bottom");
+        legend.itemsLayout("vertical"); // ou "horizontal"
+        legend.padding(10);
+
+
+
+
         // draw map
         map.container('Chart2_3');
         map.draw();

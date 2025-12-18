@@ -16,13 +16,13 @@ fetch('chart1_1.json')
                 datasets: [{
                     label: "Décès (cumulés)",
                     data: donneesMort, // Utilise la variable "donneesMort"
-                    backgroundColor: 'rgba(255, 99, 132, 0.7)',
+                    backgroundColor: 'rgba(72, 18, 163, 0.62)',
                     yAxisID: "y"
                 },
                 {
                     label: "Retours à domicile (cumulés)",
                     data: donneesEnVie, // Utilise la variable "donneesEnVie"
-                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    backgroundColor: 'rgba(255, 200, 0, 0.63)',
                     yAxisID: "y1"
                 }]
             },

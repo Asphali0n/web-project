@@ -34,7 +34,7 @@ print(age_with_sex.head(3))
 # Drop columns
 age = age.drop(columns=["SSR_USLD", "HospConv", "autres"])
 sex = sex.drop(columns=["SSR_USLD", "HospConv", "autres"])
-age_with_sex.drop(columns=['country_source'])
+age_with_sex.drop(columns=['country_source', 'period', 'population', 'mx_covid_season'], errors='ignore')
 # Standardize datasets
 age_with_sex = age_with_sex.replace({'both':0, 'female':1, 'male':2})
 
@@ -157,6 +157,74 @@ df_chart2_2_mois = df_mois_grouped.pivot(
 ).reset_index().fillna(0)
 
 
+# -- Operations for Chart3_1 --
+
+# Filtre : France uniquement + on retire 'both' (0)
+# On crée directement df_chart3_1
+df_chart3_1 = age_with_sex[
+    (age_with_sex['country'] == 'France') & 
+    (age_with_sex['sex'] != 0)
+].copy()
+
+# Somme des décès
+df_chart3_1 = df_chart3_1.groupby(['age_group', 'sex'])['Dx_covid_season'].sum().reset_index()
+
+# Pivot pour le JS : Lignes=Age, Colonnes=Sexe
+df_chart3_1 = df_chart3_1.pivot(
+    index='age_group', columns='sex', values='Dx_covid_season')
+df_chart3_1 = df_chart3_1.rename(columns={1: 'Femmes', 2: 'Hommes'})
+
+
+# -- Operations for Chart3_2 --
+
+# Map Départements -> Régions
+regions_map = {
+    'Auvergne-Rhône-Alpes': ['01', '03', '07', '15', '26', '38', '42', '43', '63', '69', '73', '74'],
+    'Bourgogne-Franche-Comté': ['21', '25', '39', '58', '70', '71', '89', '90'],
+    'Bretagne': ['22', '29', '35', '56'],
+    'Centre-Val de Loire': ['18', '28', '36', '37', '41', '45'],
+    'Corse': ['2A', '2B'],
+    'Grand Est': ['08', '10', '51', '52', '54', '55', '57', '67', '68', '88'],
+    'Hauts-de-France': ['02', '59', '60', '62', '80'],
+    'Île-de-France': ['75', '77', '78', '91', '92', '93', '94', '95'],
+    'Normandie': ['14', '27', '50', '61', '76'],
+    'Nouvelle-Aquitaine': ['16', '17', '19', '23', '24', '33', '40', '47', '64', '79', '86', '87'],
+    'Occitanie': ['09', '11', '12', '30', '31', '32', '34', '46', '48', '65', '66', '81', '82'],
+    'Pays de la Loire': ['44', '49', '53', '72', '85'],
+    'PACA': ['04', '05', '06', '13', '83', '84'],
+    'DROM': ['971', '972', '973', '974', '976']
+}
+
+# Inversion du dictionnaire (Department -> Region)
+dep_to_reg = {d: reg for reg, deps in regions_map.items() for d in deps}
+
+# Préparation des données régions (base sur 'sex' importé plus haut)
+df_temp_regions = sex.copy()
+
+# On garde 'sexe 0' (tous)
+df_temp_regions = df_temp_regions[df_temp_regions['sexe'] == 0]
+
+# Convertir dep en string et ajouter le 0 devant si nécessaire (ex: 1 -> 01)
+df_temp_regions['dep'] = df_temp_regions['dep'].astype(str).str.zfill(2)
+
+# On garde la dernière date dispo par département
+df_temp_regions['jour'] = pd.to_datetime(df_temp_regions['jour'])
+df_temp_regions = df_temp_regions.sort_values('jour').groupby('dep').tail(1)
+
+# On map la région et on gère les manquants
+df_temp_regions['region'] = df_temp_regions['dep'].map(dep_to_reg).fillna('Autres/Inconnu')
+
+# Somme par région (Création de df_chart3_2)
+df_chart3_2 = df_temp_regions.groupby('region')['dc'].sum().sort_values(ascending=False).reset_index()
+
+
+# -- Operations for Chart3_3 --
+
+# On part de la base nettoyée, filtrée sur 'sex 0' (total)
+df_chart3_3 = age_with_sex[age_with_sex['sex'] == 0].copy()
+
+# Somme par pays
+df_chart3_3 = df_chart3_3.groupby('country')['Dx_covid_season'].sum().sort_values(ascending=False).reset_index()
 
 
 # -- Export to json --
@@ -170,4 +238,7 @@ df_chart2_3.to_json('chart2_3.json')
 df_pivot.to_json('chart1_2_jour.json', orient='records')
 df_chart1_2_mois.to_json('chart1_2_mois.json', orient='records')
 df_chart2_2_mois.to_json('chart2_2.json', orient='records')
+df_chart3_1.to_json('Chart3_1.json')
+df_chart3_2.to_json('Chart3_2.json', orient='records')
+df_chart3_3.to_json('Chart3_3.json', orient='records')
 
