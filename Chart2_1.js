@@ -10,21 +10,21 @@ fetch('chart2_1.json')
         const death = Object.values(data.dc);
         const survive = Object.values(data.rad);
 
-        const ctx2 = document.getElementById('Chart2_1').getContext('2d');
+        const ctx = document.getElementById('Chart2_1').getContext('2d');
 
-        new Chart(ctx2, {
+        new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: labels,
                 datasets: [{
                     label: 'Patients ayant succombé au Covid-19',
                     data: death,
-                    backgroundColor: 'rgba(224, 77, 77, 0.44)'
+                    backgroundColor: 'rgba(224, 77, 77, 0.50)'
                 },
                 {
                     label: 'Patients remis du Covid-19',
                     data: survive,
-                    backgroundColor: 'rgba(126, 231, 41, 0.44)'
+                    backgroundColor: 'rgba(126, 231, 41, 0.50)'
                 }]
             }
         });

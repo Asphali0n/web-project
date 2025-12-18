@@ -9,7 +9,7 @@ age = pd.read_csv("https://www.data.gouv.fr/api/1/datasets/r/08c18e08-6780-452d-
 # covid-hospit-2023-03-31-18h01.csv
 sex = pd.read_csv("https://www.data.gouv.fr/api/1/datasets/r/63352e38-d353-4b54-bfd1-f1b3ee1cabd7", sep=";")
 # mmc1.xlsx
-age_with_sex = load_mmc1()
+age_with_sex = pd.read_excel('mmc1.xlsx', sheet_name='data')
 
 
 # -- Initial print -- 
@@ -48,7 +48,8 @@ print(age_with_sex.head(3))
 
 df_chart1_1 = age
 df_chart1_1.drop(columns=(['rea', 'hosp', 'reg']))
-df_chart1 = df_chart1_1[(df_chart1_1.cl_age90 != 0) & (df_chart1_1.jour == '2023-03-31')]
+# On prend juste les lignes avec la dernière date car c'est la somme des décès et rémissions
+df_chart1_1 = df_chart1_1[(df_chart1_1.cl_age90 != 0) & (df_chart1_1.jour == '2023-03-31')]
 agg_rules = {
     'jour': 'last',
     'rad': 'sum',
@@ -62,6 +63,7 @@ df_chart1_1 = df_chart1_1.drop(columns=(['jour']))
 
 df_chart2_1 = sex
 df_chart2_1.drop(columns=(['rea', 'hosp', 'dep']))
+# On prend juste les lignes avec la dernière date car c'est la somme des décès et rémissions
 df_chart2_1 = df_chart2_1[(df_chart2_1.sexe != 0) & (df_chart2_1.jour == '2023-03-31')]
 agg_rules = {
     'jour' : 'last',
@@ -72,6 +74,17 @@ df_chart2_1 = df_chart2_1.groupby('sexe').agg(agg_rules).reset_index()
 df_chart2_1 = df_chart2_1.drop(columns=(['jour']))
 
 
+# -- Operations for Chart2_3 --
+
+df_chart2_3 = sex
+df_chart2_3 = df_chart2_3.drop(columns=(['rea', 'hosp']))
+# On prend juste les lignes avec la dernière date car c'est la somme des décès et rémissions
+df_chart2_3 = df_chart2_3[(df_chart2_3.sexe != 0) & (df_chart2_3.jour == '2023-03-31')]
+df_chart2_3 = df_chart2_3.drop(columns=(['jour'])).reset_index(drop=True)
+
+# Create new columns for graph
+
+
 
 # -- Export to json --
 
@@ -80,5 +93,5 @@ sex.to_json("sex.json")
 age_with_sex.to_json('age_with_sex.json')
 df_chart1_1.to_json('chart1_1.json')
 df_chart2_1.to_json('chart2_1.json')
-
+df_chart2_3.to_json('chart2_3.json')
 
