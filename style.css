@@ -116,12 +116,16 @@ main {
     margin: 0;
 }
 
-
 .chart {
     display: flex;
     flex: 2;
     flex-direction: column;
     justify-content: space-evenly;
+    background-color: rgb(230, 230, 230);
+    border-radius: 16px;
+}
+
+.dual-chart {
     background-color: rgb(230, 230, 230);
     border-radius: 16px;
 }
@@ -248,7 +252,6 @@ nav a:hover:not(.active) {
     pointer-events: none;
 }
 
-
 .overlay.hidden .modal {
     transform: scale(0.95);
 }
@@ -293,4 +296,14 @@ nav a:hover:not(.active) {
 
 .overlay:not(.hidden) .modal-controls {
     transition-delay: 0.1s;
+}
+
+/* Hide AnyChart watermark */
+
+img[id^="ac"] {
+    display: none !important;
+}
+
+span[id^="ac"] {
+    display: none !important;
 }

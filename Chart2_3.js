@@ -57,6 +57,7 @@ Promise.all([
         series.stroke('white');
         series.hovered().fill('#6e7dc0ff');
         map.credits().enabled(false);
+        map.background().fill("transparent")
 
         // draw map
         map.container('Chart2_3');
