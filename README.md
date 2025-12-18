@@ -47,15 +47,15 @@
 │   ├── chart1_1.json
 │   ├── chart1_2_jour.json
 │   ├── chart1_2_mois.json
-│   └── [chartX_Y.json]      # Autres fichiers de données par graphique
+│   └── [chartX_Y.json]      # Autres fichiers de données pour les graphes
 │
-├── .gitignore               # Fichiers ignorés par Git
-├── get_json.py              # Script Python pour générer/récupérer les JSON
-├── load_mmc1.py             # Script Python pour charger les données sources
-├── mmc1.xlsx                # Fichier source de données (Excel)
-├── Page_1.html              # Point d'entrée principal (Interface Web)
+├── .gitignore
+├── get_json.py              # Récupère, nettoie les datasets et génère les json
+├── load_mmc1.py             # Scrapping pour le 3ème dataset (age_with_sex)
+├── mmc1.xlsx                # Fichier de secours en cas d'échec de load_mmc1.py
+├── Page_1.html              # Fichier HTML du site web
 ├── README.md                # Documentation du projet
-└── style.css                # Feuille de style pour la mise en page
+└── style.css                # Fichier CSS du site web
 ```
 
 
