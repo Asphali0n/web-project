@@ -15,6 +15,7 @@
 
             <div class="modal-chart">
                 <canvas id="modalCanvas"></canvas>
+                <div id="modalMap"></div>
             </div>
             <div id="modalControls" class="modal-controls hidden">
                 <div class="modal-text" id="modalText"></div>
@@ -41,7 +42,7 @@
     <main>
         <section id="page1" class="dashboard-section">
             <h1 class="section-title">
-                Do you think yes the test is wow?
+                Question page1
             </h1>
             <div class="chart-container">
 
@@ -61,7 +62,7 @@
 
         <section id="page2" class="dashboard-section">
             <h1 class="section-title">
-                Do you think yes the test is wow?
+                Question page2
             </h1>
             <div class="chart-container-3charts">
                 <div class="chart-container">
@@ -80,8 +81,10 @@
                 </div>
                 <div class="chart-container">
                     <div class="chart chart-clickable" data-desc="Description du graphe 2_3">
-                        <h2 class="chart-title">GUH 2_3</h2>
-                        <canvas id="Chart2_3"></canvas>
+                        <h2 class="chart-title">GUH 2_3 map</h2>
+                        <div class="AnyChart-map">
+                            <div id="Chart2_3"></div>
+                        </div>
                     </div>
                 </div>
 
@@ -90,7 +93,7 @@
 
         <section id="page3" class="dashboard-section">
             <h1 class="section-title">
-                Do you think yes the test is wow?
+                test test phrase longue ah ouais c pas ouf là
             </h1>
             <div class="chart-container">
 
@@ -177,8 +180,12 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.14.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.14.0/js/anychart-map.min.js"></script>
+    <script src="https://cdn.anychart.com/geodata/2.2.0/countries/france/france.js"></script>
     <script src="Chart1_1.js"></script>
     <script src="Chart2_1.js"></script>
+    <script src="Chart2_3.js"></script>
     <script src="Chart3_2.js"></script>
     <script src="Popup.js"></script>
 </body>
