@@ -188,6 +188,7 @@ main {
     background-color: rgb(230, 230, 230);
     border-radius: 16px;
     padding: 24px;
+    white-space: pre-wrap;
 }
 
 .close-button {
