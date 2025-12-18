@@ -39,6 +39,7 @@ fetch('chart2_1.json')
                         // Second jeu de données : Les Femmes
                         label: 'Femmes',
                         // Données : [Mort Femme, Survie Femme]
+                        
                         data: [femmeDeath, femmeSurvive],
                         backgroundColor: 'rgba(255, 99, 132, 0.50)'
                     }
