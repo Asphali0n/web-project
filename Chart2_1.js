@@ -2,9 +2,9 @@ fetch('chart2_1.json')
     .then(response => response.json())
     .then(data => {
 
-        
+
         const sexes = Object.values(data.sexe);
-        const deaths = Object.values(data.dc);  
+        const deaths = Object.values(data.dc);
         const survives = Object.values(data.rad);
 
         // New variables to reorganize by death and survivors
@@ -49,6 +49,7 @@ fetch('chart2_1.json')
                 ]
             },
             options: {
+                responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true

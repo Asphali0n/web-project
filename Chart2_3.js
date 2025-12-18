@@ -58,6 +58,7 @@ Promise.all([
         series.hovered().fill('#6e7dc0ff');
         map.credits().enabled(false);
         map.background().fill("transparent")
+        map.bounds(0, 0, "100%", "100%")
 
         // draw map
         map.container('Chart2_3');
