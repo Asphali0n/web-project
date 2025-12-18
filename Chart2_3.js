@@ -59,6 +59,10 @@ Promise.all([
         map.credits().enabled(false);
         map.background().fill("transparent")
         map.bounds(0, 0, "100%", "100%")
+        map.interactivity().zoomOnMouseWheel(true);
+        map.listen('pointClick', function (e) {
+            map.zoomToFeature(e.point.get('id'));
+        })
 
         // draw map
         map.container('Chart2_3');

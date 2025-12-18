@@ -97,7 +97,7 @@ main {
     display: flex;
     flex: 1;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: rgb(230, 230, 230);
     border-radius: 16px;
 }
@@ -106,9 +106,9 @@ main {
     flex: 1;
 }
 
-canvas {
+.chart canvas {
     max-width: 100%;
-    margin: 0 2%;
+    margin: 0 1%;
 }
 
 
@@ -117,7 +117,7 @@ canvas {
     text-align: center;
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
-    margin: 1vh 0.5vw;
+    margin: 1vh 0;
 }
 
 .chart-clickable {
@@ -135,15 +135,6 @@ canvas {
     transition: opacity 0.4s ease, visibility 0.4s;
     background: rgba(0, 0, 0, 0.6);
     z-index: 2000;
-}
-
-.below-graph {
-    width: 100%;
-    background-color: rgb(215, 215, 215);
-    box-sizing: border-box;
-    border-radius: 16px;
-    margin-bottom: 4vh;
-    padding: 16px;
 }
 
 .modal {
