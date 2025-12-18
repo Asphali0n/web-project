@@ -19,7 +19,7 @@ html {
     width: 0px;
     font-size: x-large;
     font-weight: bold;
-    padding-left: 32px;
+    padding-left: 2vw;
 }
 
 header {
@@ -38,8 +38,8 @@ nav {
     align-items: center;
     justify-content: center;
     width: 100%;
-    gap: 20px;
-    padding-right: 32px;
+    gap: 1vw;
+    padding-right: 2vw;
 }
 
 nav a {
@@ -63,7 +63,7 @@ main {
     width: 90%;
     height: calc(100vh - 66px);
     background-color: rgb(255, 255, 255);
-    padding: 5%;
+    padding: 4vw;
     padding-top: 66px;
 }
 
@@ -75,7 +75,7 @@ main {
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 0;
-    margin-top: 5%;
+    margin-top: 4vh;
 }
 
 /* ================== Components ================== */
@@ -87,10 +87,10 @@ main {
     box-sizing: border-box;
     background-color: rgb(243, 243, 243);
     border-radius: 16px;
-    gap: 32px;
-    padding: 32px;
-    margin-bottom: 5%;
-    margin-top: 32px;
+    gap: 2vw;
+    padding: 3vh 2vw;
+    margin-bottom: 4vh;
+    margin-top: 4vh;
     min-width: 0;
     min-height: 0;
 }
@@ -104,15 +104,15 @@ main {
     border-radius: 16px;
     box-sizing: border-box;
     min-height: 0;
-    padding: 16px;
-    margin-top: 32px;
-    margin-bottom: 32px;
+    padding: 1.5vh 1vw;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
 }
 
 .chart-container-3charts .chart-container {
     background-color: none;
     border-radius: none;
-    padding: 16px;
+    padding: 1.5vh 1vw;
     margin: 0;
 }
 
@@ -131,7 +131,7 @@ main {
     text-align: center;
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
-    margin: 3px;
+    margin: 1vh 0.5vw;
 }
 
 .chart-clickable {
