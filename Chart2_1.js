@@ -2,30 +2,58 @@ fetch('chart2_1.json')
     .then(response => response.json())
     .then(data => {
 
-        const labels = Object.values(data.sexe).map(valeur => {
-        if (valeur == 1) return "homme";
-        if (valeur == 2) return "femme";
-        return valeur;
-    });
-        const death = Object.values(data.dc);
-        const survive = Object.values(data.rad);
+        
+        const sexes = Object.values(data.sexe);
+        const deaths = Object.values(data.dc);  
+        const survives = Object.values(data.rad);
+
+        // New variables to reorganize by death and survivors
+        let hommeDeath, hommeSurvive, femmeDeath, femmeSurvive;
+
+        sexes.forEach((valeurSexe, index) => {
+            if (valeurSexe == 1) {
+                hommeDeath = deaths[index];
+                hommeSurvive = survives[index];
+            } else if (valeurSexe == 2) {
+                femmeDeath = deaths[index];
+                femmeSurvive = survives[index];
+            }
+        });
 
         const ctx = document.getElementById('Chart2_1').getContext('2d');
 
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Patients ayant succombé au Covid-19',
-                    data: death,
-                    backgroundColor: 'rgba(224, 77, 77, 0.50)'
-                },
-                {
-                    label: 'Patients remis du Covid-19',
-                    data: survive,
-                    backgroundColor: 'rgba(126, 231, 41, 0.50)'
-                }]
+                // L'axe X devient les catégories d'état
+                labels: ['Patients ayant succombé au Covid-19', 'Patients remis du Covid-19'],
+                datasets: [
+                    {
+                        // Premier jeu de données : Les Hommes
+                        label: 'Hommes',
+                        // Données : [Mort Homme, Survie Homme]
+                        data: [hommeDeath, hommeSurvive],
+                        backgroundColor: 'rgba(54, 162, 235, 0.50)', // Bleu (exemple)
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        // Second jeu de données : Les Femmes
+                        label: 'Femmes',
+                        // Données : [Mort Femme, Survie Femme]
+                        data: [femmeDeath, femmeSurvive],
+                        backgroundColor: 'rgba(255, 99, 132, 0.50)', // Rouge/Rose (exemple)
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
         });
     });
