@@ -150,6 +150,7 @@ function getFormattedMapData(mode) {
     });
 }
 
+
 // Close button
 closeBtn.addEventListener('click', closeModal);
 // This one just closes it if you click anywhere outside instead of the X button (I know you would do that)
