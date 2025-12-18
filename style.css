@@ -60,8 +60,7 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 85%;
-    max-width: 1440px;
+    width: 90%;
     height: calc(100vh - 66px);
     background-color: rgb(255, 255, 255);
     padding-top: 66px;
@@ -94,31 +93,11 @@ main {
     margin-top: 4vh;
 }
 
-.chart-container-3charts {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    flex-grow: 1;
-    width: 100%;
-    background-color: rgb(243, 243, 243);
-    border-radius: 16px;
-    box-sizing: border-box;
-    min-height: 0;
-    padding: 1.5vh 1vw;
-    margin-top: 4vh;
-    margin-bottom: 4vh;
-}
-
-.chart-container-3charts .chart-container {
-    background-color: unset;
-    padding: 1.5vh 1vw;
-    margin: 0;
-}
-
 .chart {
     display: flex;
-    flex: 2;
+    flex: 1;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     background-color: rgb(230, 230, 230);
     border-radius: 16px;
 }
@@ -126,6 +105,12 @@ main {
 #Chart2_3 {
     flex: 1;
 }
+
+canvas {
+    max-width: 100%;
+    margin: 0 2%;
+}
+
 
 .chart-title {
     align-self: top;
@@ -150,6 +135,15 @@ main {
     transition: opacity 0.4s ease, visibility 0.4s;
     background: rgba(0, 0, 0, 0.6);
     z-index: 2000;
+}
+
+.below-graph {
+    width: 100%;
+    background-color: rgb(215, 215, 215);
+    box-sizing: border-box;
+    border-radius: 16px;
+    margin-bottom: 4vh;
+    padding: 16px;
 }
 
 .modal {
