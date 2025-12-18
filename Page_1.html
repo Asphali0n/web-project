@@ -32,7 +32,7 @@
 
 <body>
     <header>
-        <div id="title">dashboard</div>
+        <div id="title">Dashboard</div>
         <nav>
             <a href="#page1" class="active">Page 1</a>
             <a href="#page2">Page 2</a>
@@ -42,7 +42,7 @@
     <main>
         <section id="page1" class="dashboard-section">
             <h1 class="section-title">
-                Question page1
+                Quelle est l’importance de l’âge dans la mortalité du Covid-19 ?
             </h1>
             <div class="chart-container">
 
@@ -52,8 +52,8 @@
                     <canvas id="Chart1_1"></canvas>
                 </div>
 
-                <div class="chart chart-clickable" data-desc="Description du graphe 1_2">
-                    <h2 class="chart-title">GUH 1_2</h2>
+                <div class="chart chart-clickable" data-desc="Ce graphique met en évidence la dynamique de la mortalité durant la pandémie de Covid-19 sur une période de trois ans. On y observe une forte corrélation entre l'âge et le nombre de décès : la courbe verte (tranche des ~80-89 ans) domine largement le graphique, atteignant des pics bien plus élevés que les autres groupes, tandis que la mortalité chez les moins de 60 ans (courbe violette) reste comparativement très faible et stable.">
+                    <h2 class="chart-title">Évolution mensuelle des décès liés au COVID-19 par tranche d'âge (Mars 2020 - Mars 2023)</h2>
                     <canvas id="Chart1_2"></canvas>
                 </div>
 
@@ -62,7 +62,7 @@
 
         <section id="page2" class="dashboard-section">
             <h1 class="section-title">
-                Question page2
+                Le sexe a-t-il un impact sur la dangerosité du virus ?
             </h1>
 
             <div class="chart-container">
@@ -73,13 +73,15 @@
                     <canvas id="Chart2_1"></canvas>
                 </div>
 
-                <div class="chart chart-clickable" data-desc="Description du graphe 2_2">
-                    <h2 class="chart-title">GUH 2_2</h2>
+                <div class="chart chart-clickable" data-desc="Ce graphique illustre une surmortalité masculine constante tout au long de la crise sanitaire. Bien que les courbes rouge (hommes) et bleue (femmes) suivent rigoureusement les mêmes fluctuations saisonnières et épidémiques, la courbe des hommes demeure systématiquement au-dessus de celle des femmes. Cela montre que les hommes sont plus à risque que les femmes tout au long de la pandémie.">
+                    <h2 class="chart-title">Évolution mensuelle des décès liés au Covid-19 par sexe (Mars 2020 - Mars 2023)</h2>
                     <canvas id="Chart2_2"></canvas>
                 </div>
 
-                <div class="chart chart-clickable" data-desc="Description du graphe 2_3">
-                    <h2 class="chart-title map-title">GUH 2_3 map</h2>
+                <div class="chart chart-clickable" data-desc="Cette carte montre la différence de mortalité entre les hommes et les femmes dans chaque département. Le résultat est très clair : toute la carte est bleue. Cela veut dire que partout en France, il y a eu plus de décès chez les hommes que chez les femmes.
+
+Comme on ne voit aucune zone rouge (qui indiquerait l'inverse), cela prouve que l'endroit où l'on vit ne change rien. Peu importe la région, les hommes ont toujours été plus à risque face au virus que les femmes.">
+                    <h2 class="chart-title map-title">Répartition géographique de la surmortalité liée au Covid-19 par sexe en France</h2>
 
                     <div id="Chart2_3"></div>
 
@@ -91,21 +93,21 @@
 
         <section id="page3" class="dashboard-section">
             <h1 class="section-title">
-                test test phrase longue ah ouais c pas ouf là
+                Comparaison de l’importance de l’âge et du sexe sur le nombre de morts
             </h1>
             <div class="chart-container">
 
-                <div class="chart chart-clickable" data-desc="Description du graphe 3_1">
-                    <h2 class="chart-title">GUH 3_1</h2>
+                <div class="chart chart-clickable" data-desc="Ce graphique montre le nombre total de morts en séparant les hommes (en bleu) et les femmes (en rose) selon leur âge. Il apporte une nuance importante par rapport aux graphiques précédents. On y voit deux tendances opposées : Entre 45 et 84 ans, la barre bleue est toujours plus haute. Cela confirme que les hommes meurent plus du Covid que les femmes. Après 85 ans, la tendance s'inverse brutalement : la barre rose dépasse la bleue. C'est la seule tranche d'âge où il y a plus de décès de femmes.">
+                    <h2 class="chart-title">Total des décès par tranche d'âge et par sexe</h2>
                     <canvas id="Chart3_1"></canvas>
                 </div>
 
-                <div class="chart chart-clickable" data-desc="Description du graphe 3_2">
-                    <h2 class="chart-title">GUH 3_2</h2>
+                <div class="chart chart-clickable" data-desc="Ce graphe classe les régions françaises selon le nombre cumulé de victimes. L'Île-de-France arrive largement en tête avec près de 30 000 décès, suivie par l'Auvergne-Rhône-Alpes et le Grand Est.L'Île-de-France étant la région la plus peuplée, il est logique d'y observer le plus grand nombre de décès en valeur absolue. À l'inverse, la Corse et les régions avec moins de gens affichent naturellement les chiffres les plus bas.">
+                    <h2 class="chart-title">Nombre total de décès par région en France</h2>
                     <canvas id="Chart3_2"></canvas>
                 </div>
-                <div class="chart chart-clickable" data-desc="Description du graphe 3_3">
-                    <h2 class="chart-title">GUH 3_3</h2>
+                <div class="chart chart-clickable" data-desc="Ce graphique en anneau met en perspective le nombre total de décès recensés dans une sélection de pays occidentaux. Il y a une prédominance des États-Unis. Cela indique que le nombre absolu de décès aux États-Unis est supérieur à celui de tous les autres pays du graphique réunis.Parmi les nations européennes représentées, l'Angleterre et le Pays de Galles (en bleu) affichent la part la plus importante, suivis par la France (en jaune). La Belgique, la Suède et l'Écosse sont des fractions plus petites.">
+                    <h2 class="chart-title">Comparaison internationale du volume de décès observés</h2>
                     <canvas id="Chart3_3"></canvas>
                 </div>
 
