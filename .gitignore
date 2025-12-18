@@ -3,3 +3,5 @@ age.csv
 sex.csv
 age_with_sex.csv
 chart2.csv
+.ipynb
+*.xlsx
