@@ -60,10 +60,10 @@ main {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 96%;
+    width: 90%;
     height: calc(100vh - 66px);
     background-color: rgb(255, 255, 255);
-    padding: 2%;
+    padding: 5%;
     padding-top: 66px;
 }
 
@@ -75,7 +75,7 @@ main {
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 0;
-    margin-top: 32px;
+    margin-top: 5%;
 }
 
 /* ================== Components ================== */
@@ -89,7 +89,7 @@ main {
     border-radius: 16px;
     gap: 32px;
     padding: 32px;
-    margin-bottom: 32px;
+    margin-bottom: 5%;
     margin-top: 32px;
 }
 
@@ -97,9 +97,17 @@ main {
     display: flex;
     flex: 2;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     background-color: rgb(230, 230, 230);
     border-radius: 16px;
+}
+
+.chart-title {
+    align-self: top;
+    text-align: center;
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    margin: 3px;
 }
 
 .chart-clickable {
@@ -176,6 +184,8 @@ main {
     line-height: 1;
     padding: 0;
 }
+
+
 
 /* ================== States ================== */
 

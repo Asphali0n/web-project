@@ -28,6 +28,7 @@
         <nav>
             <a href="#page1" class="active">Page 1</a>
             <a href="#page2">Page 2</a>
+            <a href="#page3">Page 3</a>
         </nav>
     </header>
     <main>
@@ -39,12 +40,12 @@
 
                 <div class="chart chart-clickable"
                     data-desc="Ce graphe représente le nombre de personnes décédées ou sorties vivantes des hôpitaux en France, en fonction de leur âge, entre 2020 et 2023. On remarque que plus l’âge des personnes augmente, plus le taux de mortalité augmente lui aussi. Cela peut facilement s’expliquer par le fait que les personnes âgées possèdent une constitution plus faible que les autres.">
-                    <h2>Impact de l'âge sur la mortalité du virus</h2>
+                    <h2 class="chart-title">Impact de l'âge sur la mortalité du virus</h2>
                     <canvas id="Chart1_1"></canvas>
                 </div>
 
                 <div class="chart chart-clickable" data-desc="Description du graphe 1_2">
-                    <h2>GUH 1_2</h2>
+                    <h2 class="chart-title">GUH 1_2</h2>
                     <canvas id="Chart1_2"></canvas>
                 </div>
 
@@ -59,13 +60,32 @@
 
                 <div class="chart chart-clickable"
                     data-desc="Ce graphe compare l'impact du Covid-19 selon le sexe, en distinguant les décès des survivants. La mortalité est visiblement plus élevée chez les hommes (approchant les 80 000 décès) que chez les femmes. D'après l'Ined, cela pourrait venir d’un plus grand risque pour les hommes d’être contaminés, du fait de leurs comportements – moindre respect des gestes barrière, plus grande interaction sociale, moins de télétravail – et aussi de comorbidités (hypertension, diabète), plus fréquentes chez eux à partir de la cinquantaine.">
-                    <h2>Impact du sexe sur la mortalité du virus</h2>
+                    <h2 class="chart-title">Impact du sexe sur la mortalité du virus</h2>
                     <canvas id="Chart2_1"></canvas>
                 </div>
 
                 <div class="chart chart-clickable" data-desc="Description du graphe 2_2">
-                    <h2>GUH 2_2</h2>
+                    <h2 class="chart-title">GUH 2_2</h2>
                     <canvas id="Chart2_2"></canvas>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="page3" class="dashboard-section">
+            <h1 class="section-title">
+                Do you think yes the test is wow?
+            </h1>
+            <div class="chart-container">
+
+                <div class="chart chart-clickable" data-desc="Description du graphe 3_1">
+                    <h2 class="chart-title">GUH 3_1</h2>
+                    <canvas id="Chart3_1"></canvas>
+                </div>
+
+                <div class="chart chart-clickable" data-desc="Description du graphe 3_2">
+                    <h2 class="chart-title">GUH 3_2</h2>
+                    <canvas id="Chart3_2"></canvas>
                 </div>
 
             </div>
@@ -112,8 +132,9 @@
         // Listens for any scrolling event
         window.addEventListener('wheel', (event) => {
 
-            // Returns nothing if we are already scrolling
-            if (isScrolling) return;
+            // Returns nothing if we are already scrolling or if an overlay is already active
+            const overlayactive = !(document.getElementById('overlay')).classList.contains('hidden')
+            if (isScrolling || overlayactive) return;
 
             if (event.deltaY > 0) {  // deltaY > 0 means we are scrolling downwards
                 // Increase the page index unless it is already the last one
@@ -136,7 +157,7 @@
             sections[index].scrollIntoView({ behavior: 'smooth' });
             setTimeout(() => {
                 isScrolling = false;
-            }, 600); // delay (ms)
+            }, 400); // delay (ms)
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

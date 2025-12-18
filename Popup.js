@@ -23,11 +23,6 @@ function openModal(sourceCanvas, description) {
     // Get the chart instance of the source (the one you clicked)
     const originalChart = Chart.getChart(sourceCanvas);
 
-    if (!originalChart) {
-        console.error("No chart found.");
-        return;
-    }
-
     // Show overlay
     overlay.classList.remove('hidden');
     modalText.textContent = description;
