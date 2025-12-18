@@ -82,7 +82,75 @@ df_chart2_3 = df_chart2_3.drop(columns=(['rea', 'hosp']))
 df_chart2_3 = df_chart2_3[(df_chart2_3.sexe != 0) & (df_chart2_3.jour == '2023-03-31')]
 df_chart2_3 = df_chart2_3.drop(columns=(['jour'])).reset_index(drop=True)
 
-# Create new columns for graph
+
+
+# -- Operations for Chart1_2 --
+
+# nettoyage de base
+df_chart1_2 = age.copy()
+df_chart1_2['jour'] = pd.to_datetime(df_chart1_2['jour'])
+df_chart1_2 = df_chart1_2[df_chart1_2.cl_age90 != 0]
+
+# fusion des tranches d'age
+df_chart1_2['cl_age90'] = df_chart1_2['cl_age90'].replace(
+    {9: '0-59', 19: '0-59', 29: '0-59', 39: '0-59', 49: '0-59', 59: '0-59'})
+df_chart1_2 = df_chart1_2.groupby(['jour', 'cl_age90'], as_index=False)['dc'].sum()
+
+
+# somme des décés par age
+df_chart1_2_jour = df_chart1_2.groupby(
+    ['jour', 'cl_age90'], as_index=False)[['dc']].sum()
+df_chart1_2_jour = df_chart1_2_jour.sort_values(['cl_age90', 'jour'])
+
+# calcul des décés par jour (en gros ne plus avoir le cumul mais le nombre éxacte par jour)
+df_chart1_2_jour['dc_new'] = df_chart1_2_jour.groupby(
+    'cl_age90')['dc'].diff().fillna(0).clip(lower=0)
+
+# Pivot (J'ai pas trouvé plus sipmple pour faire mon truc et c plus)
+df_pivot = df_chart1_2_jour.pivot(
+    index='jour', columns='cl_age90', values='dc_new'
+).reset_index().fillna(0)
+df_pivot['jour'] = df_pivot['jour'].astype(str)
+
+# je Calcul à nouveau mais pour les mois puis je refais un pivot
+df_chart1_2_mois = df_chart1_2_jour.copy()
+df_chart1_2_mois['mois'] = df_chart1_2_mois['jour'].dt.to_period('M').astype(str)
+df_mois_grouped = df_chart1_2_mois.groupby(['mois', 'cl_age90'], as_index=False)[
+    ['dc_new']].sum()
+
+df_chart1_2_mois = df_mois_grouped.pivot(
+    index='mois', columns='cl_age90', values='dc_new'
+).reset_index().fillna(0)
+
+
+
+# -- Operations for Chart2_2 --
+
+# nettoyage de base
+df_chart2_2 = sex.copy()
+df_chart2_2['jour'] = pd.to_datetime(df_chart2_2['jour'])
+df_chart2_2 = df_chart2_2[df_chart2_2.sexe != 0]
+
+# somme des décès par sexe
+df_chart2_2_jour = df_chart2_2.groupby(
+    ['jour', 'sexe'], as_index=False)[['dc']].sum()
+df_chart2_2_jour = df_chart2_2_jour.sort_values(['sexe', 'jour'])
+
+# calcul des décés par jour (en gros ne plus avoir le cumul mais le nombre éxacte par jour)
+df_chart2_2_jour['dc_new'] = df_chart2_2_jour.groupby(
+    'sexe')['dc'].diff().fillna(0).clip(lower=0)
+
+# je Calcul à nouveau mais pour les mois puis je refais un pivot
+df_chart2_2_mois = df_chart2_2_jour.copy()
+df_chart2_2_mois['mois'] = df_chart2_2_mois['jour'].dt.to_period('M').astype(str)
+df_mois_grouped = df_chart2_2_mois.groupby(['mois', 'sexe'], as_index=False)[
+    ['dc_new']].sum()
+
+df_chart2_2_mois = df_mois_grouped.pivot(
+    index='mois', columns='sexe', values='dc_new'
+).reset_index().fillna(0)
+
+
 
 
 
@@ -94,4 +162,7 @@ age_with_sex.to_json('age_with_sex.json')
 df_chart1_1.to_json('chart1_1.json')
 df_chart2_1.to_json('chart2_1.json')
 df_chart2_3.to_json('chart2_3.json')
+df_pivot.to_json('chart1_2_jour.json', orient='records')
+df_chart1_2_mois.to_json('chart1_2_mois.json', orient='records')
+df_chart2_2_mois.to_json('chart2_2_mois.json', orient='records')
 
