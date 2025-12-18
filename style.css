@@ -210,6 +210,12 @@ main {
     padding: 0;
 }
 
+.toggle-btn {
+    width: 20%;
+    border-radius: 16px;
+    border: none;
+}
+
 /* ================== States ================== */
 
 nav a.active {
@@ -246,6 +252,11 @@ nav a:hover:not(.active) {
 
 .control-group.hidden {
     display: none;
+}
+
+.toggle-btn:not(.selected):hover {
+    background-color: rgb(240, 240, 240) !important;
+    transition: background-color .1s ease;
 }
 
 /* ================== Animations ================== */

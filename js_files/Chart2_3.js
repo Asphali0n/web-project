@@ -34,7 +34,7 @@ Promise.all([
 
         // Convert to table
         let mapData = Object.values(depsList).map(dep => {
-            let couleur = (dep.dc_hommes > dep.dc_femmes) ? '#42a5f5' : '#ec407a';
+            let couleur = (dep.dc_hommes > dep.dc_femmes) ? '#62b8ff' : '#ff4b87';
             return {
                 id: dep.id,
                 value: dep.dc_hommes + dep.dc_femmes,

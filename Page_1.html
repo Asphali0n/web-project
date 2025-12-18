@@ -24,6 +24,13 @@
                     <label id="sliderLabel">Multiplicateur : <span id="sliderValue">100%</span></label>
                     <input type="range" id="modalSlider" min="0" max="200" step="1">
                 </div>
+                <div id="mapToggleContainer" class="control-group hidden">
+                    <label>Données : <span id="mapToggleValue">Décès</span></label>
+                    <div>
+                        <button id="btnDC" class="toggle-btn">DC</button>
+                        <button id="btnRAD" class="toggle-btn">RAD</button>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -46,8 +53,7 @@
             </h1>
             <div class="chart-container">
 
-                <div class="chart chart-clickable"
-                    data-desc="Ce graphe représente le nombre de personnes décédées ou sorties vivantes des hôpitaux en France, en fonction de leur âge, entre 2020 et 2023. 
+                <div class="chart chart-clickable" data-desc="Ce graphe représente le nombre de personnes décédées ou sorties vivantes des hôpitaux en France, en fonction de leur âge, entre 2020 et 2023. 
 On remarque que plus l’âge des personnes augmente, plus le taux de mortalité augmente lui aussi. Cela peut facilement s’expliquer par le fait que les personnes âgées possèdent une constitution plus faible que les autres.
 
 https://www.sciencesetavenir.fr/sante/personnes-agees-a-risque-face-au-coronavirus-mais-a-quel-point_143806">
@@ -78,7 +84,7 @@ On y observe une forte corrélation entre l'âge et le nombre de décès : la co
 La mortalité est visiblement plus élevée chez les hommes (approchant les 80 000 décès) que chez les femmes. 
 D'après l'Ined, cela pourrait venir d’un plus grand risque pour les hommes d’être contaminés, du fait de leurs comportements – moindre respect des gestes barrière, plus grande interaction sociale, moins de télétravail – et aussi de comorbidités (hypertension, diabète), plus fréquentes chez eux à partir de la cinquantaine.
 
-https://www.ined.fr/fr/publications/editions/population-et-societes/la-covid-19-plus-meurtriere-pour-les-hommes-que-pour-les-femmes/#:~:text=Cela%20pourrait%20venir%20d'un,la%20cinquantaine%20%5B5%5D%2C%20qui">
+https://www.ined.fr/fr/publications/editions/population-et-societes/la-covid-19-plus-meurtriere-pour-les-hommes-que-pour-les-femmes">
                     <h2 class="chart-title">Impact du sexe sur la mortalité du virus</h2>
                     <canvas id="Chart2_1"></canvas>
                 </div>
@@ -112,8 +118,7 @@ Comme on ne voit aucune zone rouge (qui indiquerait l'inverse), cela prouve que 
             </h1>
             <div class="chart-container">
 
-                <div class="chart chart-clickable"
-                    data-desc="Ce graphique montre le nombre total de morts en séparant les hommes (en bleu) et les femmes (en rose) selon leur âge. 
+                <div class="chart chart-clickable" data-desc="Ce graphique montre le nombre total de morts en séparant les hommes (en bleu) et les femmes (en rose) selon leur âge. 
 Ça apporte une nuance importante par rapport aux graphiques précédents. On y voit deux tendances opposées : Entre 45 et 84 ans, la barre bleue est toujours plus haute. Cela confirme que les hommes meurent plus du Covid que les femmes. 
 Après 85 ans, la tendance s'inverse brutalement : la barre rose dépasse la bleue. C'est la seule tranche d'âge où il y a plus de décès de femmes.
 
