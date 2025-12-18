@@ -25,26 +25,22 @@ fetch('chart2_1.json')
         new Chart(ctx, {
             type: 'bar',
             data: {
-                // L'axe X devient les catégories d'état
+                
                 labels: ['Patients ayant succombé au Covid-19', 'Patients remis du Covid-19'],
                 datasets: [
                     {
-                        // Premier jeu de données : Les Hommes
+                        
                         label: 'Hommes',
-                        // Données : [Mort Homme, Survie Homme]
+                        
                         data: [hommeDeath, hommeSurvive],
-                        backgroundColor: 'rgba(54, 162, 235, 0.50)', // Bleu (exemple)
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
+                        backgroundColor: 'rgba(54, 162, 235, 0.50)',
                     },
                     {
                         // Second jeu de données : Les Femmes
                         label: 'Femmes',
                         // Données : [Mort Femme, Survie Femme]
                         data: [femmeDeath, femmeSurvive],
-                        backgroundColor: 'rgba(255, 99, 132, 0.50)', // Rouge/Rose (exemple)
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
+                        backgroundColor: 'rgba(255, 99, 132, 0.50)'
                     }
                 ]
             },
