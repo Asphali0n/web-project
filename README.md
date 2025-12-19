@@ -17,13 +17,13 @@
 |Edgar|Problématique + Sous-questions|Graphes|Graphes|
 
 ## 💻 Languages
-- JavaScript - 40.4%
+- JavaScript - 46.7%
 
-- Python - 26.1%
+- Python - 18.4%
  
-- HTML - 20.6%
+- HTML - 23.6%
  
-- CSS - 12.9%
+- CSS - 11.3%
 
 ## 📂 Organisation des fichiers
 
