@@ -273,6 +273,13 @@ function updateChart1_2(chart) {
         dataset.data = finalData.map(item => item[ageKey]);
     });
 
+    // Fix y axis
+    if (labelKey === 'mois') {
+        chart.options.scales.y.max = window.chart1_2_data.maxMois;
+    } else {
+        chart.options.scales.y.max = window.chart1_2_data.maxJour;
+    }
+
     chart.update();
 }
 
